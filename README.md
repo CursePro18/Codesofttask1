@@ -1,3 +1,5 @@
+package numberguessinggame;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -20,7 +22,14 @@ public class NumberGuessingGame {
 
             while (attempts < MAX_ATTEMPTS && !hasGuessedCorrectly) {
                 System.out.print("Enter your guess: ");
-                int userGuess = scanner.nextInt();
+                int userGuess;
+                if(scanner.hasNextInt()) {
+                    userGuess = scanner.nextInt();
+                } else {
+                    System.out.println("Invalid input. Please enter a number.");
+                    scanner.next(); // consume invalid input
+                    continue;
+                }
                 attempts++;
 
                 if (userGuess == numberToGuess) {
@@ -48,3 +57,4 @@ public class NumberGuessingGame {
         scanner.close();
     }
 }
+
